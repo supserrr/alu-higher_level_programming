@@ -1,4 +1,4 @@
-# Learning About Lists and Tuples in Python
+# Python - Data Structures: Lists, Tuples
 
 ## Learning Objectives
 
