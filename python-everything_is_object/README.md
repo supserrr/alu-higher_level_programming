@@ -1,4 +1,4 @@
-# Understanding Objects, References, and Mutability in Python
+# Python - Everything is object
 
 ## Learning Objectives
 
