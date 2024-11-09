@@ -1,4 +1,4 @@
-# Handling Errors and Exceptions in Python
+# Python - Exceptions
 
 ## Learning Objectives
 
