@@ -1,4 +1,4 @@
-# Python Basics: Control Flow, Loops, and Functions
+# Python - if/else, loops, functions
 
 ## Learning Objectives
 
