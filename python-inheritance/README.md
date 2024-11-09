@@ -1,4 +1,4 @@
-# Understanding Inheritance in Python
+# Python - Inheritance
 
 ## Learning Objectives
 
