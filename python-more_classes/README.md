@@ -1,4 +1,4 @@
-# Python - Object-Oriented Programming (OOP)
+# Python - More Classes and Objects
 
 ## Learning Objectives
 
