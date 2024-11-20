@@ -14,13 +14,14 @@ This repository contains programs written for the higher-level programming at AL
 * [python-inheritance](https://github.com/supserrr/alu-higher_level_programming/tree/master/python-inheritance)
 * [python-input_output](https://github.com/supserrr/alu-higher_level_programming/tree/master/python-input_output)
 * [SQL_introduction](https://github.com/supserrr/alu-higher_level_programming/tree/master/SQL_introduction)
-* [SQL_more_queries]()
-* [python-network_0]()
-* [python-network_1]()
-* [python-test_driven_development]()
-* [python-almost_a_circle]()
+* [SQL_more_queries](https://github.com/supserrr/alu-higher_level_programming/tree/master/SQL_more_queries)
+* [python-network_0](https://github.com/supserrr/alu-higher_level_programming/tree/master/python-network_0)
+* [python-network_1](https://github.com/supserrr/alu-higher_level_programming/tree/master/python-network_1)
+* [python-test_driven_development](https://github.com/supserrr/alu-higher_level_programming/tree/master/python-test_driven_development)
+* [python-almost_a_circle](https://github.com/supserrr/alu-higher_level_programming/tree/master/python-almost_a_circle)
+* [python-object_relational_mapping](https://github.com/supserrr/alu-higher_level_programming/tree/master/python-object_relational_mapping)
 
-## Authors
+## Author
 
 - [@Serein](https://www.github.com/supserrr)
 
