@@ -1,30 +1,28 @@
 #!/usr/bin/python3
 """
-Select all records from states table
+Script that takes in the name of a state as an argument and lists
+all cities of that state, using the database
 """
+import MySQLdb
 from sys import argv
 
-import MySQLdb
+# The code should not be executed when imported
+if __name__ == '__main__':
+    # make a connection to the database
+    db = MySQLdb.connect(host="localhost", port=3306, user=argv[1],
+                         passwd=argv[2], db=argv[3])
 
-if __name__ == "__main__":
-    username, password, database = argv[1:4]
-    search_name = argv[4]
-    # default host is 'localhost' and default port is '3306'
-    connection = MySQLdb.connect(
-        user=username,
-        password=password,
-        db=database
-    )
+    cur = db.cursor()
+    cur.execute("SELECT cities.id, cities.name FROM cities\
+                INNER JOIN states ON cities.state_id = states.id\
+                WHERE states.name = %s", [argv[4]])
 
-    cursor = connection.cursor()
-    cursor.execute(
-        'SELECT cities.id, cities.name , states.name '
-        'FROM states INNER JOIN cities '
-        'ON states.id = cities.state_id WHERE states.name = %s '
-        'ORDER BY cities.id', (search_name,))
-    states = cursor.fetchall()
+    rows = cur.fetchall()
+    j = []
+    for i in rows:
+        j.append(i[1])
+    print(", ".join(j))
 
-    for i in range(len(states)):
-        print(states[i][1], end=", " if i + 1 < len(states) else "")
-    print("")
-    connection.close()
+    # Clean up process
+    cur.close()
+    db.close()

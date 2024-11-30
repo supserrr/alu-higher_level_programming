@@ -1,25 +1,23 @@
 #!/usr/bin/python3
-"""
-Select all records from states table
-"""
+""" Script that lists all states from the database hbtn_0e_0_usa """
+import MySQLdb
 from sys import argv
 
-import MySQLdb
+# The code should not be executed when imported
+if __name__ == '__main__':
 
-if __name__ == "__main__":
-    username, password, database = argv[1:4]
-    # default host is 'localhost' and default port is '3306'
-    connection = MySQLdb.connect(
-        user=username,
-        password=password,
-        db=database
-    )
+    # make a connection to the database
+    db = MySQLdb.connect(host="localhost", port=3306, user=argv[1],
+                         passwd=argv[2], db=argv[3])
 
-    cursor = connection.cursor()
-    cursor.execute('SELECT * FROM states ORDER BY states.id')
-    states = cursor.fetchall()
+    # It gives us the ability to have multiple seperate working environments
+    # through the same connection to the database.
+    cur = db.cursor()
+    cur.execute("SELECT * FROM states")
 
-    for state in states:
-        print(state)
-
-    connection.close()
+    rows = cur.fetchall()
+    for i in rows:
+        print(i)
+    # Clean up process
+    cur.close()
+    db.close()

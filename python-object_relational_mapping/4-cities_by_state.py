@@ -1,29 +1,24 @@
 #!/usr/bin/python3
 """
-Select all records from states table
+Script that lists all cities from the database hbtn_0e_4_usa
 """
+import MySQLdb
 from sys import argv
 
-import MySQLdb
+# The code should not be executed when imported
+if __name__ == '__main__':
+    # make a connection to the database
+    db = MySQLdb.connect(host="localhost", port=3306, user=argv[1],
+                         passwd=argv[2], db=argv[3])
 
-if __name__ == "__main__":
-    username, password, database = argv[1:4]
-    # default host is 'localhost' and default port is '3306'
-    connection = MySQLdb.connect(
-        user=username,
-        password=password,
-        db=database
-    )
+    cur = db.cursor()
+    cur.execute("SELECT cities.id, cities.name, states.name FROM cities\
+                INNER JOIN states ON cities.state_id = states.id\
+                ORDER BY cities.id ASC")
 
-    cursor = connection.cursor()
-    cursor.execute(
-        'SELECT cities.id, cities.name , states.name '
-        'FROM states INNER JOIN cities '
-        'ON states.id = cities.state_id '
-        'ORDER BY cities.id')
-    states = cursor.fetchall()
-
-    for state in states:
-        print(state)
-
-    connection.close()
+    rows = cur.fetchall()
+    for i in rows:
+        print(i)
+    # Clean up process
+    cur.close()
+    db.close()
