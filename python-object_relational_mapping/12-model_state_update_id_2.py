@@ -1,25 +1,27 @@
 #!/usr/bin/python3
 """
-Script that changes the name of a State object to the database
-Using module SQLAlchemy
+Module to get all states
 """
-
-from model_state import Base, State
-from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
 from sys import argv
 
+from model_state import State, Base
+from sqlalchemy import create_engine
+from sqlalchemy.orm import Session
+
 if __name__ == "__main__":
-    # create an engine
-    engine = create_engine('mysql+mysqldb://{}:{}@localhost/{}'.format(
-        argv[1], argv[2], argv[3]), pool_pre_ping=True)
-    # create a configured "Session" class
-    Session = sessionmaker(bind=engine)
-    # create a Session
-    session = Session()
+    username, password, database = argv[1:4]
+    # default host is 'localhost' and default port is '3306'
+    engine = create_engine(
+        'mysql+mysqldb://{}:{}@localhost/{}'
+        .format(username, password, database),
+        pool_pre_ping=True
+    )
+    session = Session(engine)
     Base.metadata.create_all(engine)
-    state_update = session.query(State).filter_by(id='2').first()
-    state_update.name = "New Mexico"
-    # commit and close session
+
+    state = session.query(State).filter(State.id == 2).first()
+    state.name = "New Mexico"  # why it failed, i was setting the name of session instead of state
     session.commit()
+    # print(f"{state.id}")
+
     session.close()
